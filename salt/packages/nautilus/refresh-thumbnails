@@ -1,0 +1,65 @@
+#!/usr/bin/python
+
+import sys
+import optparse
+import os
+import hashlib
+import gio
+
+
+def touch(filename, times=None):
+    file_handle = open(filename, 'a')
+    try:
+        os.utime(filename, times)
+    finally:
+        file_handle.close()
+
+
+def refresh_thumbnail(filename):
+
+    def remove_thumbnail(thumbnail):
+        if os.path.exists(thumbnail):
+            if os.path.isfile(thumbnail):
+                os.remove(thumbnail)
+                return True
+            else:
+                print('{} is not a file!'.format(thumbnail))
+        else:
+            print('{} does not exist!'.format(thumbnail))
+        return False
+
+    def get_default_thumbnail(filename):
+        gio_file = gio.File(filename)
+        gio_file_info = gio_file.query_info('thumbnail::path')
+        return gio_file_info.get_attribute_as_string('thumbnail::path')
+
+    def get_failed_thumbnail(filename):
+        # https://github.com/GNOME/glib/blob/
+        # f7b13e05f9bc5bd2b54f589d16ad580f6d833173/gio/glocalfileinfo.c#L1293
+        uri = gio.File(filename).get_uri()
+        md5_hash = hashlib.md5(uri).hexdigest()
+        cache_directory = os.path.expanduser(
+            '~/.cache/thumbnails/fail/gnome-thumbnail-factory/')
+        return os.path.join(cache_directory, md5_hash + '.png')
+
+    thumb_path = get_default_thumbnail(filename)
+    if not thumb_path:
+        thumb_path = get_failed_thumbnail(filename)
+    return remove_thumbnail(thumb_path)
+
+
+def main():
+    parser = optparse.OptionParser(
+        usage='usage: %prog files', version='%prog 0.2')
+
+    (options, files) = parser.parse_args(sys.argv)
+    files = files[1:]
+
+    if not files:
+        parser.error('No files specified.')
+    for f in files:
+        if refresh_thumbnail(f):
+            touch(f)
+
+if __name__ == '__main__':
+    main()

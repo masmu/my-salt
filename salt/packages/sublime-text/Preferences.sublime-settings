@@ -1,0 +1,49 @@
+{
+	"auto_complete": true,
+	"caret_style": "solid",
+	"color_scheme": "Packages/User/Tomorrow-Night (SL).tmTheme",
+	"draw_white_space": "all",
+	"file_exclude_patterns":
+	[
+		".DS_Store",
+		"*.pid",
+		"*.pyc"
+	],
+	"find_selected_text": true,
+	"fold_buttons": false,
+	"folder_exclude_patterns":
+	[
+		".git",
+		"__pycache__"
+	],
+	"font_face": "Ubuntu Mono",
+	"font_options":
+	[
+		"subpixel_antialias",
+		"no_bold"
+	],
+	"font_size": 11,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignore_inodes": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"line_padding_bottom": 0,
+	"line_padding_top": 0,
+	"rulers":
+	[
+		72,
+		79
+	],
+	"scroll_past_end": true,
+	"show_full_path": true,
+	"show_minimap": true,
+	"tab_size": 4,
+	"theme": "Soda Light 3.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"wide_caret": true,
+	"word_wrap": false,
+	"wrap_width": 80
+}

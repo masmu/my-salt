@@ -1,0 +1,5 @@
+[
+    { "keys": ["ctrl+shift+7"], "command": "toggle_comment", "args": { "block": false } },
+    { "keys": ["alt+s"], "command": "toggle_record_macro" },
+    { "keys": ["alt+w"], "command": "run_macro" },
+]

@@ -1,0 +1,76 @@
+#!/bin/bash
+
+function invalidoption () {
+
+  echo "$0 : invalid option -- $*"
+  echo "Try '$0 --help' for more information."
+  exit
+
+}
+
+function help () {
+
+  echo ""
+  echo " usage: $0 [--debug|--fetch|--dry] [category]"
+  echo ""
+  echo " --debug    find out what goes wrong if something goes wrong."
+  echo " --fetch    get a list of files from the ftp, to make a fresh update."
+  echo " --dry      just show what would be updated without real changes at all."
+  echo ""
+  exit
+
+}
+
+function start_sync() {
+  sitecopy -u -q "box-$1"
+}
+
+function start_fetch() {
+  sitecopy -f -q "box-$1"
+}
+
+function start_dry {
+  sitecopy -n -q -u "box-$1"
+}
+
+function start_debug {
+  sitecopy --debug=ftp,files -u -q "box-$1"
+}
+
+ACTION="update"
+TARGET=""
+
+while [ "$#" -gt "0" ]; do
+  case $1 in
+    --debug | -d)
+      ACTION="debug"
+      shift
+    ;;
+    --fetch | -f)
+      ACTION="fetch"
+      shift
+    ;;
+    --dry)
+      ACTION="dry"
+      shift
+    ;;
+    -h|--help)
+      help
+      exit
+    ;;
+    *)
+      if [ "$ACTION" == "update" ]; then
+        start_sync $1
+      elif [ "$ACTION" == "fetch" ]; then
+        start_fetch $1
+      elif [ "$ACTION" == "dry" ]; then
+        start_dry $1
+      else
+        start_debug $1
+      fi
+      exit
+    ;;
+  esac
+done
+
+invalidoption $*

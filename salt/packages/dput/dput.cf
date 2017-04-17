@@ -1,0 +1,4 @@
+{% for profile, config in dput_config.items() %}[{{ profile }}]
+{% for key, value in config.items() %}{{ key }} = {{ value }}
+{% endfor %}
+{% endfor %}

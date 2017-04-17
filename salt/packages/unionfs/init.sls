@@ -1,0 +1,3 @@
+unionfs-fuse:
+  pkg:
+    - installed

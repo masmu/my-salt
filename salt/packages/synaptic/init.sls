@@ -1,0 +1,3 @@
+synaptic:
+  pkg:
+    - installed

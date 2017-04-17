@@ -1,0 +1,46 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+'''
+Usage:
+    set-image-meta <file> <meta>...
+    set-image-meta [-h | --help | --version]
+
+Options:
+    -v --version         show the version
+    -h --help            show the help
+    --debug              enable debugging
+
+'''
+
+import docopt
+import os
+import sys
+from PIL import Image, PngImagePlugin
+import urllib
+
+options = docopt.docopt(__doc__, version='0.1')
+
+if options['<file>'] and len(options['<meta>']) > 0:
+    filepath = options['<file>']
+    metadata = {}
+    if not os.path.exists(filepath):
+        print('{} not existing.'.format(filepath))
+        sys.exit(1)
+    for meta in options['<meta>']:
+        try:
+            key, value = meta.split(':', 1)
+            metadata[key] = value
+        except ValueError:
+            print('Error in metadata format: {}'.format(meta))
+            sys.exit(2)
+
+    image = Image.open(filepath)
+    png_info = PngImagePlugin.PngInfo()
+    for k, v in metadata.items():
+        if k == 'VideoURL':
+            png_info.add_text(k, 'file://' + urllib.quote(v), 0)
+        else:
+            png_info.add_text(k, v, 0)
+    image.save(filepath, 'PNG', pnginfo=png_info)
+

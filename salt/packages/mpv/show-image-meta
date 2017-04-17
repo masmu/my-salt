@@ -1,0 +1,33 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+'''
+Usage:
+    show-image-meta <file>
+    show-image-meta [-h | --help | --version]
+
+Options:
+    -v --version         show the version
+    -h --help            show the help
+    --debug              enable debugging
+
+'''
+
+import docopt
+import os
+import sys
+from PIL import Image, PngImagePlugin
+import urllib
+
+options = docopt.docopt(__doc__, version='0.1')
+
+if options['<file>']:
+    filepath = options['<file>']
+    metadata = {}
+    if not os.path.exists(filepath):
+        print('{} not existing.'.format(filepath))
+        sys.exit(1)
+
+    image = Image.open(filepath)
+    for k, v in image.info.items():
+        print('{} = "{}"'.format(k, v))

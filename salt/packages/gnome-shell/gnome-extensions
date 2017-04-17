@@ -1,0 +1,15 @@
+#!/bin/bash
+
+EXTENSION_FILE="$HOME/.gnome-shell-extensions"
+
+if [ "$1" == "enable" ] || [ "$1" == "--enable" ]; then
+  gsettings set org.gnome.shell enabled-extensions "$(cat $EXTENSION_FILE)"
+  if [ "$(ps aux | grep -v grep | grep easystroke | wc -l)" == "0" ]; then
+    easystroke
+  fi
+elif [ "$1" == "disable" ] || [ "$1" == "--disable" ]; then
+  gsettings set org.gnome.shell enabled-extensions "[]"
+  killall -9 easystroke
+elif [ "$1" == "save" ] || [ "$1" == "--save" ]; then
+  echo $(gsettings get org.gnome.shell enabled-extensions) > $EXTENSION_FILE
+fi

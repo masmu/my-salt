@@ -1,0 +1,120 @@
+#!/usr/bin/python
+import sys
+import os
+import re
+import urllib
+import datetime
+from PIL import Image
+
+VIDEO_MATCH = '\.(avi|mpg|mpeg|xvid|divx|mkv|wmv|mov|flv|f4v|mp4|ogm|ogv|3gp|vob|mp3|wav|ogg|wma|flac|mp7|pls|ts|m2ts)$'
+IMAGE_MATCH = '\.(png)$'
+
+
+def is_match(text, expression):
+    regex = re.compile(expression)
+    matches = regex.findall(text)
+    if matches:
+        return True
+    return False
+
+
+def list_to_arguments(list_):
+    argument = ''
+    for l in list_:
+        argument = '%s "%s"' % (argument, l)
+    return argument
+
+
+def search_for_videos(args):
+    videos = []
+    for arg in args:
+        if os.path.isdir(arg):
+            dirname = arg
+            if dirname.endswith('VIDEO_TS'):
+                videos.append(dirname)
+            else:
+                dirlist = os.listdir(dirname)
+                dirlist.sort()
+                for filename in dirlist:
+                    if is_match(filename.lower(), VIDEO_MATCH):
+                        filename = os.path.join(dirname, filename)
+                        if filename not in videos:
+                            videos.append(filename)
+        elif os.path.isfile(arg):
+            filename = arg
+            if is_match(filename.lower(), VIDEO_MATCH):
+                if filename not in videos:
+                    videos.append(filename)
+
+    files = list_to_arguments(videos)
+    os.system('/usr/bin/mpv %s' % files)
+
+
+class UriHandler(object):
+    def __init__(self):
+        self.container = []
+
+    def append(self, uri):
+        intern = self.__intern(uri)
+        if intern not in self.container:
+            self.container.append(intern)
+
+    def export(self, as_string=False):
+        paths = map(self.__extern, self.container)
+        if as_string:
+            return ' '.join(['"{}"'.format(f) for f in paths])
+        else:
+            return paths
+
+    def arguments(self):
+        return ' '.join(['"{}"'.format(f) for f in self.export()])
+
+    def __getitem__(self, index):
+        return self.container[index]
+
+    def __iter__(self):
+        return self.container.__iter__()
+
+    def next(self):
+        return self.container.next()
+
+    def __intern(self, uri):
+        uri = urllib.unquote(uri)
+        if uri.startswith('file://'):
+            uri = uri[7:]
+        return uri
+
+    def __extern(self, uri):
+        return uri
+
+
+def convert_time(position):
+    stamp = int(position)
+    date = datetime.datetime.fromtimestamp(stamp / 1e3)
+    return '{}:{}:{}.{}'.format(
+        date.hour - 1, date.minute, date.second, date.microsecond)
+
+
+def handle_image(args):
+    uris = UriHandler()
+    for filename in args:
+        if is_match(filename.lower(), IMAGE_MATCH):
+            image = Image.open(filename)
+            meta = image.info
+            if 'VideoPosition' in meta and 'VideoURL' in meta:
+                position = meta['VideoPosition']
+                uris.append(meta['VideoURL'])
+                command = '/usr/bin/mpv --start "{time}" --pause {files}'.format(
+                    time=convert_time(position), files=uris.export(True))
+                print(command)
+                os.system(command)
+                return True
+
+            elif 'VideoFile' in meta:
+                pass
+    return False
+
+sys_args = sys.argv[1:]
+os.chdir(os.path.expanduser('~'))
+if not handle_image(sys_args):
+    rep_args = search_for_videos(sys_args)

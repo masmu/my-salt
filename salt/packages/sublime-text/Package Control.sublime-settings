@@ -1,0 +1,25 @@
+{
+    "bootstrapped": true,
+    "in_process_packages":
+    [
+    ],
+    "installed_packages":
+    [
+        "All Autocomplete",
+        "Better CoffeeScript",
+        "ColorPicker",
+        "Git",
+        "GitGutter",
+        "Indent XML",
+        "Markdown Preview",
+        "Origami",
+        "Package Control",
+        "SaltStack-related syntax highlighting and snippets",
+        "SideBarEnhancements",
+        "SublimeCodeIntel",
+        "SublimeLinter",
+        "SublimeLinter-flake8",
+        "Theme - Soda",
+        "Tomorrow Color Schemes"
+    ]
+}

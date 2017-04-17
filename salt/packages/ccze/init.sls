@@ -1,0 +1,3 @@
+ccze:
+  pkg:
+    - installed

@@ -1,0 +1,47 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import sys
+from optparse import OptionParser
+import os
+import fnmatch
+from urllib import quote
+
+
+def setattrib(root, directory, names):
+    path   = os.path.join(root, directory)
+    images = fnmatch.filter(os.listdir(path), names)
+    if images:
+        image = os.path.basename(images[0])
+        os.system('gvfs-set-attribute "%s" metadata::custom-icon "%s"' % (path, image))
+    else:
+        print "no image found for %s/%s" % (root, directory)
+
+def main():
+    parser = OptionParser(usage="usage: %prog [options] folder [folder2 ...]",
+                          version="%prog 0.2")
+    parser.add_option("", "--names", dest="names",
+                      default="[Ff]older.[Jj][Pp][Gg]",
+                      help='specification to match image filenames [default: "%default"]')
+    parser.add_option("-R", "--recursive", dest="recursive", action="store_true", default=False,
+                      help="set icons for folders recursively")
+
+    (options, folders) = parser.parse_args(sys.argv)
+    folders = folders[1:]
+
+    if not folders:
+        parser.error("no folders specified")
+
+    noquote = "()'*"
+
+    for folder in folders:
+        setattrib('', folder, options.names)
+        for root, dirs, files in os.walk(folder):
+            for d in dirs:
+                setattrib(root, d, options.names)
+            if not options.recursive:
+                dirs[:] = []
+    print "done."
+
+if __name__ == "__main__":
+    main()

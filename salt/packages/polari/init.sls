@@ -1,0 +1,3 @@
+polari:
+  pkg:
+    - installed

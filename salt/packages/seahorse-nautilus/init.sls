@@ -1,0 +1,3 @@
+seahorse-nautilus:
+  pkg:
+    - installed

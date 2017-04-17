@@ -1,0 +1,3 @@
+pavucontrol:
+  pkg:
+    - installed

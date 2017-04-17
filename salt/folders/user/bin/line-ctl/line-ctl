@@ -1,0 +1,70 @@
+#!/bin/bash
+
+function get_volume() {
+    VOLUME=$(amixer get "$1" | \
+        grep -Eo '\[[0-9]{1,3}%\]' | \
+        sed '1q;d' | \
+        grep -Eo '[0-9]{1,3}')
+    echo "$VOLUME"
+}
+
+function set_volume() {
+    amixer set -c 1 "$1" "$2" >/dev/null
+}
+
+function is_unmuted() {
+    STATUS=$(amixer get "$1" | \
+        grep -Eo '\[on\]' | \
+        sed '1q;d')
+    echo "$STATUS"
+}
+
+function increase_volume() {
+    amixer set "$1" "$2+" >/dev/null
+}
+
+function decrease_volume() {
+    amixer set "$1" "$2-" >/dev/null
+}
+
+function set_mute() {
+    amixer set "$1" mute >/dev/null
+}
+
+function set_unmute() {
+    amixer set "$1" unmute >/dev/null
+}
+
+function toggle_mute() {
+    if [ $(is_unmuted $1) ]; then
+        set_mute "$1"
+    else
+        set_unmute "$1"
+    fi
+}
+
+DEVICE="Line"
+STEP="3"
+
+while [ "$#" -gt "0" ]; do
+    case $1 in
+    --toggle | ~)
+        toggle_mute "$DEVICE"
+        shift
+    ;;
+    --inc | +)
+        increase_volume "$DEVICE" "$STEP"
+        shift
+    ;;
+    --dec | -)
+        decrease_volume "$DEVICE" "$STEP"
+        shift
+    ;;
+    *)
+        echo "Unknown option '$1'!"
+        exit 1
+    ;;
+    esac
+done
+
+echo "Volume: $(get_volume "$DEVICE")% $(is_unmuted "$DEVICE")"

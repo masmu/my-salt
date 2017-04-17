@@ -1,0 +1,27 @@
+#!/bin/bash
+SOURCE_DRIVE="$1"
+TARGET_DRIVE="$1_C"
+
+if [ -d $SOURCE_DRIVE ] && [ -d $TARGET_DRIVE ]; then
+    while true; do
+        echo "####################################################################################################"
+        echo "     This will copy the drive '$SOURCE_DRIVE' to '$TARGET_DRIVE'!"
+        echo "####################################################################################################"
+        echo ""
+        read -p "Do you wish to start the copy? (y/n)" yn
+        case $yn in
+            [Yy]* )
+                rsync -av \
+                      --progress \
+                      --exclude ".Trash-1000" \
+                      --exclude "lost+found" \
+                      --delete \
+                      "$SOURCE_DRIVE" "$TARGET_DRIVE"
+                break;;
+            [Nn]* ) exit;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+else
+    echo "The supplied arguments seems not to point to a valid drive. Aborted."
+fi

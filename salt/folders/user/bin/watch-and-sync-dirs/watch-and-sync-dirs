@@ -1,0 +1,116 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+'''
+Usage:
+    watch-and-sync-dirs [--dry] <source_dir> <target_dir>
+    watch-and-sync-dirs [-h | --help | --version]
+
+Options:
+    -v --version         show the version
+    -h --help            show the help
+    --dry                do not do anything
+
+'''
+
+import time
+import os
+import shutil
+import sys
+import docopt
+
+from watchdog.observers import Observer
+from watchdog.events import PatternMatchingEventHandler
+
+
+class SyncronizedOperationsEventHandler(PatternMatchingEventHandler):
+
+    def __init__(self, source_dir, dest_dir, dry_run=False):
+        PatternMatchingEventHandler.__init__(self)
+        self.source_dir = source_dir
+        self.dest_dir   = dest_dir
+        self.dry_run = dry_run
+
+    # events ----------------------------------------------------------- #
+    def on_any_event(self, event):
+        pass
+
+    def on_modified(self, event):
+        if self.is_valid_path(event.src_path):
+            print '(mod) cp %s %s' % (event.src_path, self.map_path(event.src_path))
+            if not self.dry_run:
+                self.copy(event.src_path, self.map_path(event.src_path))
+
+    def on_deleted(self, event):
+        if self.is_valid_path(event.src_path):
+            print '(del) rm %s' % (self.map_path(event.src_path))
+            if not self.dry_run:
+                self.delete(self.map_path(event.src_path))
+
+    def on_created(self, event):
+        if self.is_valid_path(event.src_path):
+            print '(new) cp %s %s' % (event.src_path, self.map_path(event.src_path))
+            if not self.dry_run:
+                self.copy(event.src_path, self.map_path(event.src_path))
+
+    def on_moved(self, event):
+        if self.is_valid_path(event.src_path):
+            print '(mov) mv %s %s' % (self.map_path(event.src_path), self.map_path(event.dest_path))
+            if not self.dry_run:
+                self.move(self.map_path(event.src_path), self.map_path(event.dest_path))
+
+    # helpers ----------------------------------------------------------- #
+    def map_path(self, path):
+        return os.path.join(self.dest_dir, path[len(self.source_dir) + 1:])
+
+    def is_valid_path(self, path):
+        return path.find('/.goutputstream') == -1
+
+    def copy(self, source, destination):
+        if os.path.isfile(source):
+            shutil.copyfile(source, destination)
+        elif os.path.isdir(source):
+            if not os.path.exists(destination):
+                shutil.copytree(source, destination)
+
+    def delete(self, destination):
+        if os.path.isfile(destination):
+            os.remove(destination)
+        elif os.path.isdir(destination):
+            if os.path.exists(destination):
+                shutil.rmtree(destination)
+
+    def move(self, source, destination):
+        if os.path.isfile(source):
+            os.rename(source, destination)
+        elif os.path.isdir(source):
+            if not os.path.exists(destination):
+                shutil.move(source, destination)
+
+if __name__ == "__main__":
+
+    options = docopt.docopt(__doc__, version='0.1')
+
+    if not os.path.isdir(options['<source_dir>']):
+        print('{} is not a directory!'.format(options['<source_dir>']))
+        sys.exit(1)
+    if not os.path.isdir(options['<target_dir>']):
+        print('{} is not a directory!'.format(options['<target_dir>']))
+        sys.exit(1)
+
+    source_dir = os.path.abspath(options['<source_dir>'])
+    dest_dir   = os.path.abspath(options['<target_dir>'])
+    print('source: {}'.format(source_dir))
+    print('target: {}'.format(dest_dir))
+
+    event_handler = SyncronizedOperationsEventHandler(
+        source_dir, dest_dir, options['--dry'])
+    observer = Observer()
+    observer.schedule(event_handler, path=source_dir, recursive=True)
+    observer.start()
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+    observer.join()

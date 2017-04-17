@@ -1,0 +1,55 @@
+#/bin/bash
+
+CONFIG_PATH="${HOME}/.config/livestreamer"
+
+function invalidoption () {
+
+  echo "$0 : invalid option -- $*"
+  echo "Try '$0 --help' for more information."
+  exit
+
+}
+
+function help () {
+
+  echo ""
+  echo " usage: $0 [none|box]"
+  echo ""
+  echo " samples:"
+  echo " $0"
+  echo " $0 default"
+  echo " $0 box"
+  echo ""
+  exit
+
+}
+
+function remove_config () {
+  if [ -f $CONFIG_PATH/config ]; then  
+    rm ${CONFIG_PATH}/config
+  fi
+}
+
+while [ "$#" -gt "0" ]; do
+  case $1 in
+    default)
+      remove_config
+      ln -s ${CONFIG_PATH}/config.default ${CONFIG_PATH}/config
+      exit
+    ;;
+    box)
+      remove_config
+      ln -s ${CONFIG_PATH}/config.box ${CONFIG_PATH}/config
+      exit
+    ;;
+    -h|--help)
+      help
+      exit
+    ;;
+    *)
+      break
+    ;;
+  esac
+done
+
+invalidoption $*

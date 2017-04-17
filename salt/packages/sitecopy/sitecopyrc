@@ -1,0 +1,9 @@
+{% for host, config in sitecopy_config.items() %}site {{ host }}
+  server {{ config['server'] }}
+  port {{ config['port'] }}
+  username {{ config['username'] }}
+  local {{ config['local'] }}
+  remote {{ config['remote'] }}
+{% for exclude in config.get('excludes', []) %}  exclude "{{ exclude.replace('\\\\', '\\') }}"
+{% endfor %}
+{% endfor %}

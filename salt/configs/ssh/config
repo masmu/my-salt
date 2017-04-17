@@ -1,0 +1,4 @@
+{% for host, attributes in ssh_config.items() %}Host {{ host }}
+{% for key, value in attributes.items() %}    {{ key }} {{ value }}
+{% endfor %}
+{% endfor %}

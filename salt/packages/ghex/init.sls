@@ -1,0 +1,3 @@
+ghex:
+  pkg:
+    - installed

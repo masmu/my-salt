@@ -1,0 +1,6 @@
+player=/usr/bin/vlc
+player-args={filename} --file-caching 8000 --network-caching 8000
+hls-segment-threads=10
+hds-segment-threads=10
+verbose-player
+default-stream=best

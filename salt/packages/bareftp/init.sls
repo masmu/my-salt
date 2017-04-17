@@ -1,0 +1,3 @@
+bareftp:
+  pkg:
+    - installed
