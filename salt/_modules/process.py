@@ -62,13 +62,14 @@ SHELL_PROCESSES = {
 }
 
 for proc in psutil.process_iter():
-    if proc.name() == 'gnome-shell':
+    if proc.name() in ('gnome-shell', 'i3'):
         uid = proc.uids()[0]
         SHELL_PROCESSES[uid] = {
             'uid': uid,
             'gid': proc.gids()[0],
             'env': _get_pid_env(proc.pid),
         }
+        break
 
 def run_as_user(cmd, uid=None, stdin=None):
     shell = SHELL_PROCESSES[uid]
