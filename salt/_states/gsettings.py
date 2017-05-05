@@ -5,7 +5,10 @@ log = logging.getLogger(__name__)
 
 
 def mod_init(low):
-    __salt__['pkg.install']('python-psutil')
+    if __grains__['os'] in ('Arch', 'Arch ARM'):
+        __salt__['pkg.install']('python2-psutil')
+    else:
+        __salt__['pkg.install']('python-psutil')
     log.info('Installed requirements for module "{}"'.format(__name__))
     return True
 
