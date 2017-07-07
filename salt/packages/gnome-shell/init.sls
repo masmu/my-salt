@@ -62,6 +62,12 @@ org/gnome/desktop/interface:
         clock-show-date: true
         monospace-font-name: 'Ubuntu Mono 9'
 
+org/gnome/desktop/sound:
+  gsettings.write:
+    - user: {{ user }}
+    - attributes:
+        event-sounds: false
+
 org/gnome/desktop/background:
   gsettings.write:
     - user: {{ user }}
