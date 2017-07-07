@@ -39,7 +39,7 @@ function clean() {
 
 MACHINE_ID=""
 ACTION="state.highstate"
-DEBUG_FLAG=""
+DEBUG_FLAG="-l info"
 
 while [ "$#" -gt "0" ]; do
     case $1 in
