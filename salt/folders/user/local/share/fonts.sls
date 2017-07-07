@@ -9,7 +9,7 @@ pull-powerline-fonts:
   git.latest:
     - name: https://github.com/powerline/fonts.git
     - target: /tmp/powerline-fonts
-    - unless: ls {{ home }}/.local/share/fonts | grep 'Sauce Code Powerline Regular.otf'
+    - unless: ls {{ home }}/.local/share/fonts | grep 'Space Mono Bold for Powerline.ttf'
     - user: {{ user }}
 
 install-powerline-fonts:
@@ -18,4 +18,4 @@ install-powerline-fonts:
     - user: {{ user }}
     - require:
       - git: pull-powerline-fonts
-    - creates: {{ home }}/.local/share/fonts/Sauce Code Powerline Regular.otf
+    - creates: {{ home }}/.local/share/fonts/Space Mono Bold for Powerline.ttf
