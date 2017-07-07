@@ -8,8 +8,11 @@
     - group: {{ group }}
     - dir_mode: 755
 
-bin-bashrc:
+add-bin-to-profile:
   file.append:
-    - name: {{ home }}/.bashrc
+    - name: {{ home }}/.profile
     - text:
-      - 'export PATH="$PATH:~/.bin:~/.local/bin"'
+      - |
+        if [ -d "$HOME/.bin/" ] ; then
+            PATH="$HOME/.bin/:$PATH"
+        fi
