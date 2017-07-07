@@ -1,7 +1,10 @@
 base:
+  'codapult':
+    - codapult.config
+    - codapult.secrets
   'raketomat':
-    - moe.config
-    - moe.secrets
+    - raketomat.config
+    - raketomat.secrets
   'ubuntu':
     - ubuntu.config
     - ubuntu.secrets
