@@ -69,7 +69,6 @@ for proc in psutil.process_iter():
             'gid': proc.gids()[0],
             'env': _get_pid_env(proc.pid),
         }
-        break
 
 def run_as_user(cmd, uid=None, stdin=None):
     shell = SHELL_PROCESSES[uid]
