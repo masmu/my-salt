@@ -2,4 +2,4 @@
 .all-synced
 pillar/raketomat/secrets.sls
 pillar/codapult/secrets.sls
-
+salt/files/*.zip
