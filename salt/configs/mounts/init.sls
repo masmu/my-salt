@@ -22,7 +22,13 @@ include:
     - device: sshfs#{{ config['user'] }}@{{ config['server'] }}:{{ config['remote_dir'] }}
     - opts: noauto,uid={{ uid }},gid={{ gid }},user,_netdev
 {% endif %}
+{% if config['type'] == 'smb' %}
+    - device: //{{ config['server'] }}/{{ config['remote_dir'] }}
+    - opts: noauto,users,passwd={{ config['remote_dir'] }}
+    - fstype: cifs
+{% else %}
     - fstype: fuse
+{% endif %}
     - dump: 0
     - pass_num: 0
     - mkmnt: True
