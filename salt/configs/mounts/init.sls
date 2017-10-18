@@ -24,7 +24,7 @@ include:
 {% endif %}
 {% if config['type'] == 'smb' %}
     - device: //{{ config['server'] }}/{{ config['remote_dir'] }}
-    - opts: noauto,users,passwd={{ config['remote_dir'] }}
+    - opts: noauto,users,passwd={{ config['password'] }}
     - fstype: cifs
 {% else %}
     - fstype: fuse
