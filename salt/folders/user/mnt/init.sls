@@ -12,3 +12,4 @@
     - pkgs:
       - curlftpfs
       - sshfs
+      - cifs-utils
