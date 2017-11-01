@@ -2,11 +2,11 @@
 {% set group = pillar.get('group') %}
 {% set home = pillar.get('home') %}
 
-python-pip:
-  pkg:
-    - installed
-
 add-pip-to-profile:
+  pkg.installed:
+    - pkgs:
+      - python-pip
+      - python3-pip
   file.append:
     - name: {{ home }}/.profile
     - text:
