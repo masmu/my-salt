@@ -71,14 +71,13 @@ include:
 # package----------------------------------------------------------------------
 
 sublime-text:
-  pkg.installed:
-    - sources:
-      - sublime-text: https://download.sublimetext.com/sublime-text_build-3126_amd64.deb
-
-sublime-package-manager:
-  pkg.installed:
-    - name: curl
-  cmd.run:
-    - name: curl -L https://packagecontrol.io/Package%20Control.sublime-package -o /home/{{ user }}/.config/sublime-text-3/Installed\ Packages/Package\ Control.sublime-package
-    - creates: /home/{{ user }}/.config/sublime-text-3/Installed Packages/Package Control.sublime-package
-    - user: {{ user }}
+  pkg:
+    - installed
+  pkgrepo.managed:
+    - humanname: Sublime Text PPA
+    - name: deb https://download.sublimetext.com/ apt/stable/
+    - file: /etc/apt/sources.list.d/sublime-text.list
+    - keyid: 1EDDE2CDFC025D17F6DA9EC0ADAE6AD28A8F901A
+    - keyserver: hkp://keyserver.ubuntu.com:80
+    - require_in:
+      - pkg: sublime-text

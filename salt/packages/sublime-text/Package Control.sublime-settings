@@ -6,6 +6,7 @@
     "installed_packages":
     [
         "All Autocomplete",
+        "AutoDocstring",
         "Better CoffeeScript",
         "ColorPicker",
         "Git",
