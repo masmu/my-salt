@@ -9,3 +9,8 @@
     - group: {{ group }}
     - dir_mode: 755
     - file_mode: 644
+
+pkg-fonts-installed:
+  pkg.installed:
+    - pkgs:
+      - fonts-inconsolata

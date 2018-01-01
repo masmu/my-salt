@@ -5,6 +5,11 @@
 include:
   - packages.curl
 
+sublime-fonts-installed:
+  pkg.installed:
+    - pkgs:
+      - fonts-inconsolata
+
 # folders ---------------------------------------------------------------------
 
 {{ home }}/.config/sublime-text-3:
@@ -47,6 +52,15 @@ include:
     - mode: 644
     - source: salt://packages/sublime-text/Default (Linux).sublime-keymap
 
+{{ home }}/.config/sublime-text-3/Packages/User/Preferences.sublime-settings:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 644
+    - source: salt://packages/sublime-text/Preferences.sublime-settings
+
+# themes ----------------------------------------------------------------------
+
 {{ home }}/.config/sublime-text-3/Packages/User/Tomorrow (SL).tmTheme:
   file.managed:
     - user: {{ user }}
@@ -61,12 +75,40 @@ include:
     - mode: 644
     - source: salt://packages/sublime-text/Tomorrow-Night (SL).tmTheme
 
-{{ home }}/.config/sublime-text-3/Packages/User/Preferences.sublime-settings:
+{{ home }}/.config/sublime-text-3/Packages/User/Afterglow.sublime-theme:
   file.managed:
     - user: {{ user }}
     - group: {{ group }}
     - mode: 644
-    - source: salt://packages/sublime-text/Preferences.sublime-settings
+    - source: salt://packages/sublime-text/Afterglow.sublime-theme
+
+{{ home }}/.config/sublime-text-3/Packages/User/Afterglow-blue.sublime-theme:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 644
+    - source: salt://packages/sublime-text/Afterglow-blue.sublime-theme
+
+{{ home }}/.config/sublime-text-3/Packages/User/Afterglow-green.sublime-theme:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 644
+    - source: salt://packages/sublime-text/Afterglow-green.sublime-theme
+
+{{ home }}/.config/sublime-text-3/Packages/User/Afterglow-magenta.sublime-theme:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 644
+    - source: salt://packages/sublime-text/Afterglow-magenta.sublime-theme
+
+{{ home }}/.config/sublime-text-3/Packages/User/Afterglow-orange.sublime-theme:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 644
+    - source: salt://packages/sublime-text/Afterglow-orange.sublime-theme
 
 # package----------------------------------------------------------------------
 

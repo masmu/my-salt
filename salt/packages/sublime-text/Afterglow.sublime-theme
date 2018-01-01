@@ -1,0 +1,27 @@
+[
+    {
+        "class": "sidebar_heading",
+        "font.size": 9,
+        "font.face" : "Inconsolata",
+    },
+    {
+        "class": "sidebar_label",
+        "font.size": 12,
+        "font.face" : "Inconsolata",
+    },
+    {
+        "class": "tab_label",
+        "font.size": 12,
+        "font.face" : "Inconsolata"
+    },
+    {
+        "class": "quick_panel_label",
+        "font.size": 12,
+        "font.face": "Inconsolata"
+    },
+    {
+        "class": "quick_panel_path_label",
+        "font.size": 12,
+        "font.face": "Inconsolata"
+    },
+]

@@ -17,7 +17,7 @@
 		".git",
 		"__pycache__"
 	],
-	"font_face": "Ubuntu Mono",
+	"font_face": "Inconsolata",
 	"font_options":
 	[
 		"subpixel_antialias",
@@ -42,7 +42,8 @@
 	"show_full_path": true,
 	"show_minimap": true,
 	"tab_size": 4,
-	"theme": "Soda Light 3.sublime-theme",
+	"tabs_small": true,
+	"theme": "Afterglow.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"wide_caret": true,
