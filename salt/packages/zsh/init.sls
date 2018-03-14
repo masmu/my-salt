@@ -52,3 +52,9 @@ zsh-history-substring-search:
     - name: https://github.com/zsh-users/zsh-history-substring-search
     - target: {{ home }}/.zsh/zsh-history-substring-search
     - user: {{ user }}
+
+zsh-history-search-multi-word:
+  git.latest:
+    - name: https://github.com/zdharma/history-search-multi-word
+    - target: {{ home }}/.zsh/history-search-multi-word
+    - user: {{ user }}
