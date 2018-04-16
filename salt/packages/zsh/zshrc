@@ -94,3 +94,5 @@ source ~/.zsh/history-search-multi-word/history-search-multi-word.plugin.zsh
 
 bindkey '^[[1~' beginning-of-line #KEY-HOME-FIX
 bindkey '^[[4~' end-of-line #KEY-END-FIX
+
+alias ccat='pygmentize -g' #ALIAS-COLORCAT
