@@ -91,3 +91,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 # source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 source ~/.zsh/history-search-multi-word/history-search-multi-word.plugin.zsh
+
+bindkey '^[[1~' beginning-of-line #KEY-HOME-FIX
+bindkey '^[[4~' end-of-line #KEY-END-FIX
