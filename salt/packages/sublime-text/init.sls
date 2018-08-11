@@ -59,6 +59,13 @@ sublime-fonts-installed:
     - mode: 644
     - source: salt://packages/sublime-text/Preferences.sublime-settings
 
+{{ home }}/.config/sublime-text-3/Packages/User/Python.sublime-settings:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 644
+    - source: salt://packages/sublime-text/Python.sublime-settings
+
 # desktop entry ---------------------------------------------------------------
 
 {{ home }}/.local/share/applications/sublime_text.desktop:
