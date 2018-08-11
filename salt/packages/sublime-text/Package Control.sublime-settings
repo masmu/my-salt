@@ -1,28 +1,29 @@
 {
-    "bootstrapped": true,
-    "in_process_packages":
-    [
-    ],
-    "installed_packages":
-    [
-        "All Autocomplete",
-        "AutoDocstring",
-        "Better CoffeeScript",
-        "ColorPicker",
-        "Git",
-        "GitGutter",
-        "Indent XML",
-        "Markdown Preview",
-        "Origami",
-        "Package Control",
-        "SaltStack-related syntax highlighting and snippets",
-        "SideBarEnhancements",
-        "SublimeCodeIntel",
-        "SublimeLinter",
-        "SublimeLinter-flake8",
-        "Theme - Afterglow",
-        "Theme - Monokai Pro",
-        "Theme - Soda",
-        "Tomorrow Color Schemes"
-    ]
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"AutoDocstring",
+		"Better CoffeeScript",
+		"ColorPicker",
+		"Git",
+		"GitGutter",
+		"Indent XML",
+		"Markdown Preview",
+		"Origami",
+		"Package Control",
+		"SaltStack-related syntax highlighting and snippets",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-flake8",
+		"TabTeleport",
+		"Theme - Afterglow",
+		"Theme - Monokai Pro",
+		"Theme - Soda",
+		"Tomorrow Color Schemes"
+	]
 }
