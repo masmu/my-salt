@@ -4,6 +4,7 @@
 
 include:
   - packages.curl
+  - packages.python-pip
 
 sublime-fonts-installed:
   pkg.installed:
@@ -139,3 +140,17 @@ sublime-text:
     - keyserver: hkp://keyserver.ubuntu.com:80
     - require_in:
       - pkg: sublime-text
+
+# debugger support ------------------------------------------------------------
+
+pip3-install-PdbSublimeTextSupport:
+  pip.installed:
+    - name: PdbSublimeTextSupport
+    - bin_env: '/usr/bin/pip3'
+
+{{ home }}/.pdbrc:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 664
+    - source: salt://packages/sublime-text/pdbrc
