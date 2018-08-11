@@ -24,6 +24,6 @@ add-npm-to-profile:
     - name: {{ home }}/.profile
     - text:
       - |
-        if [ -d "$HOME/.npm/bin/" ] ; then
-            PATH="$HOME/.npm/bin/:$PATH"
+        if [ -d "$HOME/.npm/bin" ] ; then
+            PATH="$HOME/.npm/bin:$PATH"
         fi

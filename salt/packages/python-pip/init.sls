@@ -11,6 +11,6 @@ add-pip-to-profile:
     - name: {{ home }}/.profile
     - text:
       - |
-        if [ -d "$HOME/.local/bin/" ] ; then
-            PATH="$HOME/.local/bin/:$PATH"
+        if [ -d "$HOME/.local/bin" ] ; then
+            PATH="$HOME/.local/bin:$PATH"
         fi

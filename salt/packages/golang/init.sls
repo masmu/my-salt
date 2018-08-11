@@ -19,16 +19,16 @@ add-go-to-profile:
     - name: {{ home }}/.profile
     - text:
       - |
-        if [ -d "/usr/lib/go-1.7/bin/" ] ; then
-            PATH="/usr/lib/go-1.7/bin/:$PATH"
+        if [ -d "/usr/lib/go-1.7/bin" ] ; then
+            PATH="/usr/lib/go-1.7/bin:$PATH"
         fi
-        if [ -d "/usr/lib/go-1.8/bin/" ] ; then
-            PATH="/usr/lib/go-1.8/bin/:$PATH"
+        if [ -d "/usr/lib/go-1.8/bin" ] ; then
+            PATH="/usr/lib/go-1.8/bin:$PATH"
         fi
 
         if [ -d "$HOME/.go" ] ; then
             export GOPATH="$HOME/.go"
         fi
-        if [ -d "$HOME/.go/bin/" ] ; then
-            PATH="$HOME/.go/bin/:$PATH"
+        if [ -d "$HOME/.go/bin" ] ; then
+            PATH="$HOME/.go/bin:$PATH"
         fi
