@@ -59,6 +59,15 @@ sublime-fonts-installed:
     - mode: 644
     - source: salt://packages/sublime-text/Preferences.sublime-settings
 
+# desktop entry ---------------------------------------------------------------
+
+{{ home }}/.local/share/applications/sublime_text.desktop:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 644
+    - source: salt://packages/sublime-text/sublime_text.desktop
+
 # themes ----------------------------------------------------------------------
 
 {{ home }}/.config/sublime-text-3/Packages/User/Tomorrow (SL).tmTheme:

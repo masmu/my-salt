@@ -11,7 +11,7 @@
 		"*.pyc"
 	],
 	"find_selected_text": true,
-	"fold_buttons": false,
+	"fold_buttons": true,
 	"folder_exclude_patterns":
 	[
 		".git",
@@ -41,6 +41,7 @@
 	"scroll_past_end": true,
 	"show_full_path": true,
 	"show_minimap": true,
+	"status_bar_brighter": true,
 	"tab_size": 4,
 	"tabs_small": true,
 	"theme": "Afterglow.sublime-theme",
