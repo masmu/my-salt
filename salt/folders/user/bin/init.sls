@@ -13,6 +13,6 @@ add-bin-to-profile:
     - name: {{ home }}/.profile
     - text:
       - |
-        if [ -d "$HOME/.bin/" ] ; then
-            PATH="$HOME/.bin/:$PATH"
+        if [ -d "$HOME/.bin" ] ; then
+            PATH="$HOME/.bin:$PATH"
         fi

@@ -13,18 +13,10 @@ mpv:
   pkg:
     - installed
 
-/usr/local/bin/mpv:
-  file.symlink:
-    - user: root
-    - group: root
-    - mode: 755
-    - target: {{ home }}/.bin/mpv
-    - force: True
-
-/usr/share/applications/mpv.desktop:
+{{ home }}/.local/share/applications/mpv.desktop:
   file.managed:
-    - user: root
-    - group: root
+    - user: {{ user }}
+    - group: {{ group }}
     - mode: 644
     - source: salt://packages/mpv/mpv.desktop
 
@@ -106,6 +98,20 @@ mpv:
     - defaults:
         home: {{ home }}
 
+{{ home }}/.config/mpv/scripts/cycle-video-rotate.lua:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 644
+    - source: salt://packages/mpv/scripts/cycle-video-rotate.lua
+
+{{ home }}/.config/mpv/scripts/zones.lua:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 644
+    - source: salt://packages/mpv/scripts/zones.lua
+
 # folders ---------------------------------------------------------------------
 
 {{ home }}/bilder/shots:
@@ -116,12 +122,12 @@ mpv:
 
 # scripts ---------------------------------------------------------------------
 
-{{ home }}/.bin/mpv:
+{{ home }}/.bin/mpv-invoke:
   file.managed:
     - user: {{ user }}
     - group: {{ group }}
     - mode: 755
-    - source: salt://packages/mpv/mpv
+    - source: salt://packages/mpv/mpv-invoke
   pkg.installed:
     - pkgs:
       - python-pil
