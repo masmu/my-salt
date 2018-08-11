@@ -3,13 +3,10 @@
 {% set home = pillar.get('home') %}
 
 include:
+  - folders.user.local.share.fonts
   - packages.curl
   - packages.python-pip
 
-sublime-fonts-installed:
-  pkg.installed:
-    - pkgs:
-      - fonts-inconsolata
 
 # folders ---------------------------------------------------------------------
 

@@ -17,7 +17,7 @@
 		".git",
 		"__pycache__"
 	],
-	"font_face": "Inconsolata",
+	"font_face": "Inconsolata for Powerline",
 	"font_options":
 	[
 		"subpixel_antialias",

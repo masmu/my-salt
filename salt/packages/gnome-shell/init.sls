@@ -4,6 +4,7 @@
 {% set version = pillar.get('shell_version') %}
 
 include:
+  - folders.user.local.share.fonts
   - folders.user.bin
   - packages.byobu
 
@@ -60,7 +61,7 @@ org/gnome/desktop/interface:
     - user: {{ user }}
     - attributes:
         clock-show-date: true
-        monospace-font-name: 'Ubuntu Mono 9'
+        monospace-font-name: 'Inconsolata for Powerline Medium 11'
 
 org/gnome/desktop/sound:
   gsettings.write:
