@@ -15,15 +15,15 @@ add-pip-to-profile:
             PATH="$HOME/.local/bin:$PATH"
         fi
 
-{{ home }}/.pip:
-  file.directory:
-    - user: {{ user }}
-    - group: {{ group }}
-    - dir_mode: 775
+# {{ home }}/.pip:
+#   file.directory:
+#     - user: {{ user }}
+#     - group: {{ group }}
+#     - dir_mode: 775
 
-{{ home }}/.pip/pip.conf:
-  file.managed:
-    - user: {{ user }}
-    - group: {{ group }}
-    - mode: 644
-    - source: salt://packages/python-pip/pip.conf
+# {{ home }}/.pip/pip.conf:
+#   file.managed:
+#     - user: {{ user }}
+#     - group: {{ group }}
+#     - mode: 644
+#     - source: salt://packages/python-pip/pip.conf
