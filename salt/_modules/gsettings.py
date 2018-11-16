@@ -40,7 +40,6 @@ def read(name, attribute, user=None):
 
 def write(name, attribute, value, user=None):
     formatted = gvariant.dumps(value)
-    print(formatted)
     cmd = ['gsettings', 'set', name.replace('/', '.'), attribute, formatted]
     uid, gid, home = _user_settings(user)
     proc, data = process.run_as_user(cmd, uid)

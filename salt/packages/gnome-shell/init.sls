@@ -103,8 +103,8 @@ org/gnome/desktop/wm/keybindings:
     - user: {{ user }}
     - attributes:
         minimize: ['']
-        maximize: ['', '<Super>Up', '<Primary><Alt>KP_5']
-        unmaximize: ['', '<Super>Down', '<Alt>F5']
+        maximize: ['', '<Primary><Alt>KP_5']
+        unmaximize: ['', '<Alt>F5']
         toggle-maximized: ['']
         toggle-shaded: ['']
         begin-move: ['']
