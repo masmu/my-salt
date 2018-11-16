@@ -2,6 +2,7 @@ import contextlib
 import os
 import re
 
+
 class UserDirParser():
 
     XDG_DESKTOP = 'XDG_DESKTOP_DIR'
@@ -40,7 +41,7 @@ class UserDirParser():
     def read(self, file_path=None):
         file_path = file_path or self._get_user_config()
         self.data = {}
-        p = re.compile(ur'(.*?)="(.*?)"')
+        p = re.compile(r'(.*?)="(.*?)"')
         with open(file_path) as f:
             lines = f.readlines()
             for line in lines:
@@ -78,11 +79,13 @@ def _move_if_found(_from, to):
         if os.path.exists(_from) and not os.path.exists(to):
             os.rename(_from, to)
 
+
 def _delete_if_exists(target):
     if os.path.exists(target):
         os.rmdir(target)
         return False
     return True
+
 
 def _current_state(target, name, user, default, unused):
     _move_if_found(default, name)
@@ -90,6 +93,7 @@ def _current_state(target, name, user, default, unused):
         _delete_if_exists(name)
     with UserDirParser.open(user) as udp:
         return udp.get(target, None)
+
 
 def _set_state(target, name, user):
     with UserDirParser.open(user) as udp:
@@ -101,61 +105,76 @@ def current_desktop(name, user=None, default=None, unused=None):
     user = user or 'root'
     return _current_state(UserDirParser.XDG_DESKTOP, name, user, default, unused)
 
+
 def set_desktop(name, user=None):
     user = user or 'root'
     return _set_state(UserDirParser.XDG_DESKTOP, name, user)
+
 
 def current_download(name, user=None, default=None, unused=None):
     user = user or 'root'
     return _current_state(UserDirParser.XDG_DOWNLOAD, name, user, default, unused)
 
+
 def set_download(name, user=None):
     user = user or 'root'
     return _set_state(UserDirParser.XDG_DOWNLOAD, name, user)
+
 
 def current_pictures(name, user=None, default=None, unused=None):
     user = user or 'root'
     return _current_state(UserDirParser.XDG_PICTURES, name, user, default, unused)
 
+
 def set_pictures(name, user=None):
     user = user or 'root'
     return _set_state(UserDirParser.XDG_PICTURES, name, user)
+
 
 def current_videos(name, user=None, default=None, unused=None):
     user = user or 'root'
     return _current_state(UserDirParser.XDG_VIDEOS, name, user, default, unused)
 
+
 def set_videos(name, user=None):
     user = user or 'root'
     return _set_state(UserDirParser.XDG_VIDEOS, name, user)
+
 
 def current_music(name, user=None, default=None, unused=None):
     user = user or 'root'
     return _current_state(UserDirParser.XDG_MUSIC, name, user, default, unused)
 
+
 def set_music(name, user=None):
     user = user or 'root'
     return _set_state(UserDirParser.XDG_MUSIC, name, user)
+
 
 def current_documents(name, user=None, default=None, unused=None):
     user = user or 'root'
     return _current_state(UserDirParser.XDG_DOCUMENTS, name, user, default, unused)
 
+
 def set_documents(name, user=None):
     user = user or 'root'
     return _set_state(UserDirParser.XDG_DOCUMENTS, name, user)
+
 
 def current_public(name, user=None, default=None, unused=None):
     user = user or 'root'
     return _current_state(UserDirParser.XDG_PUBLIC, name, user, default, unused)
 
+
 def set_public(name, user=None):
     user = user or 'root'
     return _set_state(UserDirParser.XDG_PUBLIC, name, user)
 
+
 def current_templates(name, user=None, default=None, unused=None):
     user = user or 'root'
     return _current_state(UserDirParser.XDG_TEMPLATES, name, user, default, unused)
+
 
 def set_templates(name, user=None):
     user = user or 'root'

@@ -1,10 +1,12 @@
 import json
 import re
 
-P = re.compile(ur'^-?[0-9]+$')
+P = re.compile(r'^-?[0-9]+$')
+
 
 def quote(s):
     return s.replace('"', '\\"')
+
 
 def _parse_bool(string):
     if string == 'true':
@@ -12,6 +14,7 @@ def _parse_bool(string):
     if string == 'false':
         return False
     return None
+
 
 def _parse_list(string):
     if string.startswith('@as [') and string.endswith(']'):
@@ -27,6 +30,7 @@ def _parse_list(string):
         return json.loads(chopped)
     return None
 
+
 def _parse_string(string):
     if string.startswith('\'') and string.endswith('\''):
         chopped = string[1:-1]
@@ -35,12 +39,14 @@ def _parse_string(string):
         return ''
     return string
 
+
 def _parse_int(string):
     if string.startswith('uint32'):
         string = string[7:]
     if re.search(P, string):
         return int(string)
     return None
+
 
 def loads(string, _type=None):
     if not _type:
@@ -71,16 +77,17 @@ def loads(string, _type=None):
 
     raise NotImplementedError()
 
+
 def dumps(obj):
     if type(obj) is None:
         raise NotImplementedError()
     if type(obj) is bool:
         return 'true' if obj else 'false'
     if type(obj) is list:
-        obj = map(lambda x: quote(x.encode('ascii','ignore')), obj)
+        obj = [quote(x) for x in obj]
         return '@as {}'.format(obj)
     if type(obj) is str:
-        return '"{}"'.format(quote(obj.encode('ascii','ignore')))
+        return '"{}"'.format(quote(obj))
     if type(obj) is int:
         return str(obj)
     raise NotImplementedError()

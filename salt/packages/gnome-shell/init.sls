@@ -36,6 +36,13 @@ org/gnome/mutter:
     - attributes:
         overlay-key: 'Super_R'
 
+org/gnome/mutter/keybindings:
+  gsettings.write:
+    - user: {{ user }}
+    - attributes:
+        toggle-tiled-right: []
+        toggle-tiled-left: []
+
 org/gnome/shell:
   gsettings.write:
     - user: {{ user }}
@@ -147,7 +154,7 @@ gnome-shell-extension-clipboard-indicator:
         clear-history: ['']
         prev-entry: ['']
         next-entry: ['']
-        toggle-menu: ['']
+        toggle-menu: ['<Alt>v']
         notify-on-copy: False
 
 gnome-shell-extension-dash-to-dock:

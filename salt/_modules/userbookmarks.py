@@ -2,6 +2,7 @@ import contextlib
 import os
 import re
 
+
 class UserBookmarkParser():
 
     XDG_DESKTOP = 'XDG_DESKTOP_DIR'
@@ -40,7 +41,7 @@ class UserBookmarkParser():
     def read(self, file_path=None):
         file_path = file_path or self._get_user_config()
         self.data = {}
-        p = re.compile(ur'(.*?)\s(.*?)$')
+        p = re.compile(r'(.*?)\s(.*?)$')
         with open(file_path) as f:
             lines = f.readlines()
             for line in lines:
@@ -75,14 +76,15 @@ class UserBookmarkParser():
             key = key.replace('file://', '')
         self.data[key] = value
 
+
 def current_bookmark(name, user=None):
     user = user or 'root'
     with UserBookmarkParser.open(user) as ubp:
         return ubp.get(name, None)
+
 
 def set_bookmark(name, label, user=None):
     user = user or 'root'
     with UserBookmarkParser.open(user) as ubp:
         ubp.set(name, label)
     return ubp.get(name, None)
-

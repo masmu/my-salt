@@ -6,6 +6,7 @@ import os
 import process
 import gvariant
 
+
 def _user_settings(user=None):
     user = user or 'root'
     user_info = __salt__['user.info'](user)
@@ -15,6 +16,7 @@ def _user_settings(user=None):
         user_info.get('home', None),
     ]
 
+
 def _get_type(name, attribute, user):
     cmd = ['gsettings', 'range', name.replace('/', '.'), attribute]
     uid, gid, home = _user_settings(user)
@@ -23,6 +25,7 @@ def _get_type(name, attribute, user):
         return data
     else:
         return None
+
 
 def read(name, attribute, user=None):
     cmd = ['gsettings', 'get', name.replace('/', '.'), attribute]
@@ -34,8 +37,10 @@ def read(name, attribute, user=None):
     else:
         raise salt.exceptions.CommandExecutionError()
 
+
 def write(name, attribute, value, user=None):
     formatted = gvariant.dumps(value)
+    print(formatted)
     cmd = ['gsettings', 'set', name.replace('/', '.'), attribute, formatted]
     uid, gid, home = _user_settings(user)
     proc, data = process.run_as_user(cmd, uid)
