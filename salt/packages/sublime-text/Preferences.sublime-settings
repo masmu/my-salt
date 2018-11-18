@@ -44,6 +44,8 @@
 	"status_bar_brighter": true,
 	"tabs_small": true,
 	"theme": "Afterglow.sublime-theme",
+	"typewriter_mode_scrolling": true,
+	"typewriter_scrolling_delay": 750,
 	"wide_caret": true,
 	"word_wrap": false,
 	"wrap_width": 80

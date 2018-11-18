@@ -124,6 +124,20 @@ include:
     - mode: 644
     - source: salt://packages/sublime-text/Afterglow-orange.sublime-theme
 
+# extra sublime packages-------------------------------------------------------
+
+sublime-better-tab-cycling:
+  git.latest:
+    - name: https://github.com/masmu/sublime-better-tab-cycling
+    - target: {{ home }}/.config/sublime-text-3/Packages/sublime-better-tab-cycling
+    - user: {{ user }}
+
+sublime-typewriter:
+  git.latest:
+    - name: https://github.com/masmu/Typewriter
+    - target: {{ home }}/.config/sublime-text-3/Packages/Typewriter
+    - user: {{ user }}
+
 # package----------------------------------------------------------------------
 
 sublime-text:

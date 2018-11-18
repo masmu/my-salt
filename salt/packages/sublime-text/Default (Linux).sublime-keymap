@@ -2,6 +2,37 @@
     { "keys": ["ctrl+shift+7"], "command": "toggle_comment", "args": { "block": false } },
     { "keys": ["alt+s"], "command": "toggle_record_macro" },
     { "keys": ["alt+w"], "command": "run_macro" },
+
     { "keys": ["alt+up"], "command": "swap_line_up" },
     { "keys": ["alt+down"], "command": "swap_line_down" },
+
+    { "keys": ["alt+right"], "command": "next_pane" },
+    { "keys": ["alt+left"], "command": "prev_pane" },
+    { "keys": ["shift+alt+right"], "command": "next_view_in_pane" },
+    { "keys": ["shift+alt+left"], "command": "prev_view_in_pane" },
+
+    { "keys": ["ctrl+left"], "command": "move", "args": {"by": "subwords", "forward": false} },
+    { "keys": ["ctrl+right"], "command": "move", "args": {"by": "subword_ends", "forward": true} },
+    { "keys": ["ctrl+alt+left"], "command": "move", "args": {"by": "words", "forward": false} },
+    { "keys": ["ctrl+alt+right"], "command": "move", "args": {"by": "word_ends", "forward": true} },
+
+    { "keys": ["ctrl+pageup"], "command": "scroll_lines", "args": {"amount": 5.0 } },
+    { "keys": ["ctrl+pagedown"], "command": "scroll_lines", "args": {"amount": -5.0 } },
+    { "keys": ["ctrl+shift+pageup"], "command": "scroll_lines", "args": {"amount": 20.0 } },
+    { "keys": ["ctrl+shift+pagedown"], "command": "scroll_lines", "args": {"amount": -20.0 } },
+
+    { "keys": ["ctrl+up"], "command": "line_jumper", "args": { "number_of_lines": 10, "cmd": "up"} },
+    { "keys": ["ctrl+down"], "command": "line_jumper", "args": { "number_of_lines": 10,"cmd": "down"} },
+    { "keys": ["ctrl+shift+down"], "command": "line_jumper", "args": { "number_of_lines": 10,"cmd": "down_select"} },
+    { "keys": ["ctrl+shift+up"], "command": "line_jumper", "args": { "number_of_lines": 10,"cmd": "up_select"} },
+
+    { "keys": ["ctrl+shift+home"], "command": "move_to", "args": {"to": "bol", "extend": true} },
+    { "keys": ["ctrl+shift+end"], "command": "move_to", "args": {"to": "eol", "extend": true} },
+    { "keys": ["ctrl+shift+pageup"], "command": "move_to", "args": {"to": "bof", "extend": true} },
+    { "keys": ["ctrl+shift+pagedown"], "command": "move_to", "args": {"to": "eof", "extend": true} },
+
+    { "keys": ["super+d"], "command": "find_under_expand" },
+    { "keys": ["super+e"], "command": "expand_selection", "args": {"to": "scope"} },
+    { "keys": ["super+left"], "command": "jump_back" },
+    { "keys": ["super+right"], "command": "jump_forward" },
 ]
