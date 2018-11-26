@@ -14,7 +14,4 @@ xmodmap-bashrc:
     - name: {{ home }}/.bashrc
     - text:
       - |
-        if [ -f ~/.xmodmap.conf ] ; then
-            xmodmap ~/.xmodmap.conf
-        fi
-        
+        [ -f ~/.xmodmap.conf ] && xmodmap ~/.xmodmap.conf #LOAD_XMODMAP
