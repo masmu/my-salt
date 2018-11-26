@@ -44,7 +44,6 @@ base16-shell:
           fi
         done
 
-        [[ -f ~/.xmodmap.conf ]] && xmodmap ~/.xmodmap.conf #LOAD_XMODMAP
         SHELL_THEME='base16-tomorrow-night'
         [[ -e ~/.bash/colors/$SHELL_THEME.sh ]] && source ~/.bash/colors/$SHELL_THEME.sh #SHELL_THEME_LOADER
         stty -ixon #DISABLE_FLOW_CONTROL
