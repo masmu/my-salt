@@ -84,6 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+[[ -f ~/.xkb/keymap/mykbd ]] && xkbcomp -w 3 -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY #LOAD_XKB
 [[ -f ~/.xmodmap.conf ]] && xmodmap ~/.xmodmap.conf #LOAD_XMODMAP
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile' #SOURCE_PROFILE
 
@@ -94,5 +95,9 @@ source ~/.zsh/history-search-multi-word/history-search-multi-word.plugin.zsh
 
 bindkey '^[[1~' beginning-of-line #KEY-HOME-FIX
 bindkey '^[[4~' end-of-line #KEY-END-FIX
+bindkey "^[[1;5C" vi-forward-word #KEY-CTRL-RIGHT
+bindkey "^[[1;5D" vi-backward-word #KEY-CTRL-LEFT
+bindkey "^[[1;7C" forward-word #KEY-CTRL-ALT-RIGHT
+bindkey "^[[1;7D" backward-word #KEY-CTRL-ALT-LEFT
 
-alias ccat='pygmentize -g' #ALIAS-COLORCAT
+alias ccat='pygmentize -O style=monokai -f console256 -g' #ALIAS-COLORCAT
