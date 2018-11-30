@@ -84,8 +84,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[[ -f ~/.xkb/keymap/mykbd ]] && xkbcomp -w 3 -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY #LOAD_XKB
-[[ -f ~/.xmodmap.conf ]] && xmodmap ~/.xmodmap.conf #LOAD_XMODMAP
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile' #SOURCE_PROFILE
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
