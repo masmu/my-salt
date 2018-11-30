@@ -1,0 +1,7 @@
+--- base.lst    2018-11-30 13:58:47.777060488 +0100
++++ base.lst.mod        2018-11-30 13:58:28.797135974 +0100
+@@ -923,3 +923,4 @@
+   solaris:sun_compat   Sun Key compatibility
+   terminate            Key sequence to kill the X server
+   terminate:ctrl_alt_bksp Ctrl+Alt+Backspace
++  mapple:super         Use Super+Arrow keys to emulated PageUp,PageDown,Home,End,Delete

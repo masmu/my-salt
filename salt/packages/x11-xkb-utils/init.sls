@@ -8,55 +8,47 @@ x11-xkb-utils:
   pkg:
     - installed
 
-{{ home }}/.xkb:
-  file.directory:
-    - user: {{ user }}
-    - group: {{ group }}
-    - dir_mode: 775
-
-{{ home }}/.xkb/keymap:
-  file.directory:
-    - user: {{ user }}
-    - group: {{ group }}
-    - dir_mode: 775
-
-{{ home }}/.xkb/symbols:
-  file.directory:
-    - user: {{ user }}
-    - group: {{ group }}
-    - dir_mode: 775
-
-{{ home }}/.xkb/types:
-  file.directory:
-    - user: {{ user }}
-    - group: {{ group }}
-    - dir_mode: 775
-
-{{ home }}/.xkb/keymap/mykbd:
+/usr/share/X11/xkb/symbols/mapple:
   file.managed:
     - user: {{ user }}
     - group: {{ group }}
     - mode: 644
-    - source: salt://packages/x11-xkb-utils/mykbd
+    - source: salt://packages/x11-xkb-utils/mapple-symbol
 
-{{ home }}/.xkb/symbols/mysymbols:
+/usr/share/X11/xkb/types/mapple:
   file.managed:
     - user: {{ user }}
     - group: {{ group }}
     - mode: 644
-    - source: salt://packages/x11-xkb-utils/mysymbols
+    - source: salt://packages/x11-xkb-utils/mapple-type
 
-{{ home }}/.xkb/types/mytypes:
-  file.managed:
+/usr/share/X11/xkb/types/complete:
+  file.patch:
+    - source: salt://packages/x11-xkb-utils/types_complete.patch
+    - hash: False
+
+/usr/share/X11/xkb/rules/evdev:
+  file.patch:
+    - source: salt://packages/x11-xkb-utils/rules_evdev.patch
+    - hash: False
+
+/usr/share/X11/xkb/rules/evdev.lst:
+  file.patch:
+    - source: salt://packages/x11-xkb-utils/rules_evdev.lst.patch
+    - hash: False
+
+/usr/share/X11/xkb/rules/base:
+  file.patch:
+    - source: salt://packages/x11-xkb-utils/rules_base.patch
+    - hash: False
+
+/usr/share/X11/xkb/rules/base.lst:
+  file.patch:
+    - source: salt://packages/x11-xkb-utils/rules_base.lst.patch
+    - hash: False
+
+org/gnome/desktop/input-sources:
+  gsettings.write:
     - user: {{ user }}
-    - group: {{ group }}
-    - mode: 644
-    - source: salt://packages/x11-xkb-utils/mytypes
-
-mykbd-bashrc:
-  file.append:
-    - name: {{ home }}/.bashrc
-    - text:
-      - |
-        [ -f ~/.xkb/keymap/mykbd ] && xkbcomp -w 3 -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY #LOAD_XKB
-
+    - attributes:
+        xkb-options: ['altwin:swap_lalt_lwin', 'mapple:super']

@@ -1,5 +1,5 @@
 partial modifier_keys
-xkb_symbols "super_arrows_home_end" {
+xkb_symbols "super" {
     key <LEFT>  {
         type[Group1] = "SUPER_LEVEL2",
         symbols[Group1] = [    Left,   Home      ]
