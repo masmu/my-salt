@@ -34,7 +34,7 @@ org/gnome/mutter:
   gsettings.write:
     - user: {{ user }}
     - attributes:
-        overlay-key: 'Super_R'
+        overlay-key: ''
 
 org/gnome/mutter/keybindings:
   gsettings.write:
@@ -54,7 +54,8 @@ org/gnome/shell/keybindings:
   gsettings.write:
     - user: {{ user }}
     - attributes:
-        toggle-overview: ['<Alt>space']
+        toggle-overview: ['<Super>space']
+        toggle-message-tray: ['']
 
 org/gnome/shell/overrides:
   gsettings.write:
@@ -105,6 +106,7 @@ org/gnome/desktop/wm/keybindings:
         minimize: ['']
         maximize: ['', '<Primary><Alt>KP_5']
         unmaximize: ['', '<Alt>F5']
+        close: ['<Alt>F4', '<Super>F4']
         toggle-maximized: ['']
         toggle-shaded: ['']
         begin-move: ['']
@@ -117,15 +119,19 @@ org/gnome/desktop/wm/keybindings:
         move-to-monitor-down: ['']
         move-to-monitor-right: ['']
         move-to-monitor-left: ['']
-        move-to-workspace-up: ['<Super><Alt>Up']
-        move-to-workspace-down: ['<Super><Alt>Down']
+        move-to-workspace-up: ['<Primary><Super>minus']
+        move-to-workspace-down: ['<Primary><Super>period']
         move-to-workspace-right: ['']
         move-to-workspace-left: ['']
+        move-to-workspace-last: ['']
+        move-to-workspace-1: ['']
         switch-input-source-backward: ['']
-        switch-to-workspace-up: ['<Super>Up']
-        switch-to-workspace-down: ['<Super>Down']
+        switch-to-workspace-up: ['<Super>minus']
+        switch-to-workspace-down: ['<Super>period']
         switch-to-workspace-right: ['']
         switch-to-workspace-left: ['']
+        switch-to-workspace-last: ['']
+        switch-to-workspace-1: ['']
 
 # # extensions ------------------------------------------------------------------
 
@@ -154,7 +160,7 @@ gnome-shell-extension-clipboard-indicator:
         clear-history: ['']
         prev-entry: ['']
         next-entry: ['']
-        toggle-menu: ['<Alt>v']
+        toggle-menu: ['<Super>v']
         notify-on-copy: False
 
 gnome-shell-extension-dash-to-dock:
