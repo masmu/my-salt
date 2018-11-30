@@ -1,6 +1,7 @@
 {% set user = pillar.get('user') %}
 {% set group = pillar.get('group') %}
 {% set home = pillar.get('home') %}
+{% set xkb_options = pillar.get('xkb_options', None) %}
 
 # https://unix.stackexchange.com/questions/65434/map-superleftright-to-home-end/65923#65923
 
@@ -47,8 +48,10 @@ x11-xkb-utils:
     - source: salt://packages/x11-xkb-utils/rules_base.lst.patch
     - hash: False
 
+{% if xkb_options %}
 org/gnome/desktop/input-sources:
   gsettings.write:
     - user: {{ user }}
     - attributes:
-        xkb-options: ['altwin:swap_lalt_lwin', 'mapple:super']
+        xkb-options: {{ xkb_options }}
+{% endif %}
