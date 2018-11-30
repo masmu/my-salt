@@ -4,7 +4,7 @@
    lv5:lwin_switch_lock_cancel     =       +level5(lwin_switch_lock_cancel)
    lv5:rwin_switch_lock_cancel     =       +level5(rwin_switch_lock_cancel)
    parens:swap_brackets   =   +parens(swap_brackets)
-+  mapple:super = +maple(compat)
++  mapple:super = +maple(super)
  
  ! option       =       compat
    grp_led:num          =       +lednum(group_lock)
