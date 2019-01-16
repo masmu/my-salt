@@ -1,8 +1,0 @@
---- complete    2018-11-30 13:42:05.221367487 +0100
-+++ complete.mod        2018-11-30 13:41:57.905259018 +0100
-@@ -6,4 +6,5 @@
-     include "level5"
-     include "extra"
-     include "numpad"
-+    include "mapple"
- };
