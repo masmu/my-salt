@@ -11,7 +11,6 @@ meld:
         highlight-current-line: true
         style-scheme: tango
         show-line-numbers: true
-        window-state: maximized
         use-system-font: true
         wrap-mode: char
         insert-spaces-instead-of-tabs: true
