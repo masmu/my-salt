@@ -5,8 +5,7 @@
 go-packages:
   pkg.installed:
     - pkgs:
-      - golang-1.7-go
-      - golang-1.8-go
+      - golang-1.10
 
 {{ home }}/.go:
   file.directory:
@@ -19,11 +18,8 @@ add-go-to-profile:
     - name: {{ home }}/.profile
     - text:
       - |
-        if [ -d "/usr/lib/go-1.7/bin" ] ; then
-            PATH="/usr/lib/go-1.7/bin:$PATH"
-        fi
-        if [ -d "/usr/lib/go-1.8/bin" ] ; then
-            PATH="/usr/lib/go-1.8/bin:$PATH"
+        if [ -d "/usr/lib/go-1.10/bin" ] ; then
+            PATH="/usr/lib/go-1.10/bin:$PATH"
         fi
 
         if [ -d "$HOME/.go" ] ; then
