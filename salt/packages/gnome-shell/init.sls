@@ -35,6 +35,7 @@ org/gnome/mutter:
     - user: {{ user }}
     - attributes:
         overlay-key: ''
+        dynamic-workspaces: False
 
 org/gnome/mutter/keybindings:
   gsettings.write:
@@ -49,6 +50,7 @@ org/gnome/shell:
     - attributes:
         favorite-apps: ['firefox.desktop', 'org.gnome.Nautilus.desktop', 'gnome-terminal.desktop']
         app-picker-view: 2
+        enable-hot-corners: True
 
 org/gnome/shell/keybindings:
   gsettings.write:
@@ -95,7 +97,7 @@ org/gnome/desktop/wm/preferences:
     - user: {{ user }}
     - attributes:
         button-layout: 'menu:minimize,maximize,close'
-        num-workspaces: 6
+        num-workspaces: 8
         action-middle-click-titlebar: 'none'
         titlebar-font: 'Cantarell 11'
 
