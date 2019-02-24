@@ -21,6 +21,7 @@ seriatim:
     - source: salt://files/seriatim.zip
     - source_hash: md5=1a556c717fc0cfa02f42329ff8548232
     - archive_format: zip
+    - enforce_toplevel: False
     - user: {{ user }}
     - group: {{ group }}
 
