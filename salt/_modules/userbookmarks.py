@@ -45,7 +45,6 @@ class UserBookmarkParser():
         with open(file_path) as f:
             lines = f.readlines()
             for line in lines:
-                line = line.decode('utf-8').strip()
                 if line.startswith('#'):
                     continue
                 match = p.search(line)
@@ -61,10 +60,10 @@ class UserBookmarkParser():
                 existing[path] = value
 
         file_path = file_path or self._get_user_config()
-        with open(file_path, 'wb') as f:
+        with open(file_path, 'w') as f:
             for path, name in existing.items():
                 f.write('file://{} {}\n'.format(
-                    path.encode('utf-8'), name.encode('utf-8')))
+                    path.encode('utf-8'), name))
 
     def get(self, key, value=None):
         if key.startswith('file://'):

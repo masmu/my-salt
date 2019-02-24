@@ -34,8 +34,9 @@ def read(name, attribute, user=None):
     if proc.returncode == 0:
         data = gvariant.loads(data, _get_type(name, attribute, user))
         return data
-    else:
-        raise salt.exceptions.CommandExecutionError()
+    raise salt.exceptions.CommandExecutionError(
+        "Reading {}/{} exited with return code {}.".format(
+            name, attribute, proc.returncode))
 
 
 def write(name, attribute, value, user=None):
@@ -45,4 +46,6 @@ def write(name, attribute, value, user=None):
     proc, data = process.run_as_user(cmd, uid)
     if proc.returncode == 0:
         return formatted
-    raise salt.exceptions.CommandExecutionError()
+    raise salt.exceptions.CommandExecutionError(
+        "Writing {}/{} exited with return code {}.".format(
+            name, attribute, proc.returncode))

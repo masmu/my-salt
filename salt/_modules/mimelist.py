@@ -17,7 +17,7 @@ class MimeParser(configparser.ConfigParser):
         try:
             yield mp
         finally:
-            with open(mp._get_user_config(), 'wb') as f:
+            with open(mp._get_user_config(), 'w') as f:
                 mp.write(f)
 
     def __init__(self, user):

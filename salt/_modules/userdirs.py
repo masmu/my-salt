@@ -45,7 +45,6 @@ class UserDirParser():
         with open(file_path) as f:
             lines = f.readlines()
             for line in lines:
-                line = line.decode('utf-8')
                 if line.startswith('#'):
                     continue
                 match = re.match(p, line)
@@ -54,9 +53,9 @@ class UserDirParser():
 
     def write(self, file_path=None):
         file_path = file_path or self._get_user_config()
-        with open(file_path, 'wb') as f:
+        with open(file_path, 'w') as f:
             for key, line in self.data.items():
-                f.write('{}="{}"\n'.format(key, line.encode('utf-8')))
+                f.write('{}="{}"\n'.format(key, line))
 
     def get(self, key, value=None):
         value = self.data.get(key, value)
