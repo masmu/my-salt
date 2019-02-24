@@ -64,6 +64,13 @@ include:
     - mode: 644
     - source: salt://packages/sublime-text/Python.sublime-settings
 
+{{ home }}/.config/sublime-text-3/Packages/User/GitGutter.sublime-settings:
+  file.managed:
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 644
+    - source: salt://packages/sublime-text/GitGutter.sublime-settings
+
 # desktop entry ---------------------------------------------------------------
 
 {{ home }}/.local/share/applications/sublime_text.desktop:
