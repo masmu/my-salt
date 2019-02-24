@@ -1,0 +1,3 @@
+peek:
+  pkg:
+    - installed
