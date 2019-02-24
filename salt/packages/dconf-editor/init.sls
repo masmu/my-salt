@@ -1,0 +1,3 @@
+dconf-editor:
+  pkg:
+    - installed
