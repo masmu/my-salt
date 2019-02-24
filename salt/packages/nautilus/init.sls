@@ -15,9 +15,9 @@ nautilus:
     - user: {{ user }}
     - attributes:
         # default-folder-viewer: list-view
-        enable-interactive-search: true
-        enable-delete: true
-        sort-directories-first: true
+        # enable-interactive-search: true
+        # sort-directories-first: true
+        use-experimental-views: False
 
 {{ home }}/.bin/refresh-thumbnails:
   file.managed:
